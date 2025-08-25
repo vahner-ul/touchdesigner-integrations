@@ -356,5 +356,5 @@ temp/
 *.backup
 
 # Other
-.cloude
-*/.cloude
+.claude
+*/.claude
