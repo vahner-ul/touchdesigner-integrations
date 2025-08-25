@@ -354,3 +354,6 @@ temp/
 # Backup files
 *.bak
 *.backup
+
+# Other
+.cloude
