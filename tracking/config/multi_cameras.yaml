@@ -1,0 +1,60 @@
+service:
+  listen: 0.0.0.0
+  port: 8080
+  log_level: info
+  device: auto
+  models_dir: ./models
+
+tracking:
+  model: yolov8l
+  confidence: 0.25
+  classes: []
+  objects_max: 10
+  object_persistence_ms: 50
+  period_frames: 1
+
+osc:
+  host: 127.0.0.1
+  port: 5005
+  address_prefix: /
+  channel_format: p{index}_{axis}
+
+cameras:
+  - id: entrance
+    name: Входная дверь
+    stream: rtsp://user:pass@192.168.1.100:554/stream1
+    enabled: true
+    show_preview: false
+    roi: null
+    classes_filter: ["person"]
+    override:
+      confidence: 0.35
+
+  - id: parking
+    name: Парковка
+    stream: rtsp://user:pass@192.168.1.101:554/stream1
+    enabled: true
+    show_preview: false
+    roi: null
+    classes_filter: ["car", "person"]
+    override:
+      confidence: 0.3
+
+  - id: lobby
+    name: Холл
+    stream: rtsp://user:pass@192.168.1.102:554/stream1
+    enabled: false  # Disabled by default
+    show_preview: true
+    roi: [100, 100, 800, 600]  # Region of interest
+    classes_filter: ["person"]
+    override:
+      confidence: 0.4
+
+  - id: test_video
+    name: Тестовое видео
+    stream: ./test_video.mp4
+    enabled: false
+    show_preview: true
+    roi: null
+    classes_filter: []
+    override: null

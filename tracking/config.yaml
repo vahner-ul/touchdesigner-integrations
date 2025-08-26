@@ -1,0 +1,31 @@
+service:
+  listen: 0.0.0.0
+  port: 8080
+  log_level: info
+  device: auto
+  models_dir: ./models
+
+tracking:
+  model: yolov8l
+  confidence: 0.25
+  classes: []
+  objects_max: 10
+  object_persistence_ms: 50
+  period_frames: 1
+
+osc:
+  host: 127.0.0.1
+  port: 5005
+  address_prefix: /
+  channel_format: p{index}_{axis}
+
+cameras:
+  - id: cam1
+    name: Входная дверь
+    stream: rtsp://user:pass@host/stream
+    enabled: false
+    show_preview: false
+    roi: null
+    classes_filter: []
+    override:
+      confidence: 0.35
